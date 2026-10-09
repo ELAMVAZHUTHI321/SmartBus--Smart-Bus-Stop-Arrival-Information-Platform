@@ -1,0 +1,8 @@
+target/
+*.log
+.git
+.gitignore
+verify-api.ps1
+db-setup.sql
+db-setup-pg.sql
+schema-pg.sql
