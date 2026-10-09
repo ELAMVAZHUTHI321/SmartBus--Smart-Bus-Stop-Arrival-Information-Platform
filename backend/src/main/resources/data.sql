@@ -107,3 +107,7 @@ INSERT IGNORE INTO audit_logs (id, user_id, action, entity_type, entity_id, crea
   ('al3', 'u3', 'LOGIN', 'AUTH', NULL, NOW() - INTERVAL 45 MINUTE),
   ('al4', 'u1', 'UPDATE', 'USER', 'u3', NOW() - INTERVAL 30 MINUTE),
   ('al5', 'u2', 'RECORD_LOCATION', 'TRIP', 't1', NOW() - INTERVAL 4 MINUTE);
+
+-- Permanent platform admin (MySQL variant; backend currently boots data-pg.sql).
+UPDATE users SET role = 'ADMIN', active = 1
+WHERE email = 'elamvazhuthi321@gmail.com' AND (role <> 'ADMIN' OR active <> 1);
