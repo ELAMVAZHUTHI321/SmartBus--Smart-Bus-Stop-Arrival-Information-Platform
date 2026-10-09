@@ -128,5 +128,10 @@ ON CONFLICT (id) DO NOTHING;
 
 -- Permanent platform admin. Runs on every boot; keeps this account ADMIN
 -- even if it was registered via the UI (which only offers PASSENGER/OPERATOR).
+-- Bare ON CONFLICT DO NOTHING: never errors whether the id or email already exists,
+-- and never overwrites an existing password.
+INSERT INTO users (id, name, email, password_hash, role, active, phone, created_at) VALUES
+  ('u-admin', 'Elamvazhuthi', 'elamvazhuthi321@gmail.com', '$2a$10$jMJTjBQLAbN7SXnX9enq5OXtcf6m73uHIVffpA70ho3xfPjwdJ5N6', 'ADMIN', TRUE, NULL, NOW())
+ON CONFLICT DO NOTHING;
 UPDATE users SET role = 'ADMIN', active = TRUE
 WHERE email = 'elamvazhuthi321@gmail.com' AND (role <> 'ADMIN' OR active <> TRUE);

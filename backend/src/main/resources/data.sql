@@ -109,5 +109,8 @@ INSERT IGNORE INTO audit_logs (id, user_id, action, entity_type, entity_id, crea
   ('al5', 'u2', 'RECORD_LOCATION', 'TRIP', 't1', NOW() - INTERVAL 4 MINUTE);
 
 -- Permanent platform admin (MySQL variant; backend currently boots data-pg.sql).
+-- INSERT IGNORE never errors on duplicate id or email, and never overwrites passwords.
+INSERT IGNORE INTO users (id, name, email, password_hash, role, active, phone, created_at) VALUES
+  ('u-admin', 'Elamvazhuthi', 'elamvazhuthi321@gmail.com', '$2a$10$jMJTjBQLAbN7SXnX9enq5OXtcf6m73uHIVffpA70ho3xfPjwdJ5N6', 'ADMIN', 1, NULL, NOW());
 UPDATE users SET role = 'ADMIN', active = 1
 WHERE email = 'elamvazhuthi321@gmail.com' AND (role <> 'ADMIN' OR active <> 1);
