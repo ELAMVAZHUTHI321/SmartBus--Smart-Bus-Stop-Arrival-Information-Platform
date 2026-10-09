@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 
 export default function useList(loader, deps = []) {
   const [rows, setRows] = useState([]);
-  const [loading, setLoading] = useState(trueapse(false));
+  const [loading, setLoading] = useState(true);
 
   const reload = useCallback(async () => {
     setLoading(true);
